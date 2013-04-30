@@ -1,10 +1,11 @@
 module Notification
   class Message
-    # @@namespace = Redis::Namespace.new("notification::messages", :redis => REDIS)
-
-    attr_accessor :id, :state, :text
+    attr_accessor :id, :type, :text
 
     def initialize(args={})
+      self.id = args[:id] || SecureRandom.hex
+
+      # FIXME: currently it's allowed to set all attributes from args hash
       args.each do |k,v|
         instance_variable_set("@#{k}", v) unless v.nil?
       end
@@ -21,17 +22,26 @@ module Notification
         self.new(JSON.parse(json).deep_symbolize_keys) if json
       end
 
+      def first
+        self.all.first
+      end
+
+      def last
+        self.all.last
+      end
+
       def all
         self.namespace.keys.collect { |id| self.find(id) }
       end
 
       def destroy_all()
-        self.all.each{|s| s.destroy}
+        self.namespace.flushall
       end
     end
 
     # === Instance methods ===
     def save
+      puts self.to_json.inspect
       self.class.namespace.set(self.id, self.to_json) == "OK"
     end
 
@@ -39,5 +49,8 @@ module Notification
       self.class.namespace.del(self.id) == 1 ? true : false
     end
 
+    def to_json
+      Hash[self.instance_variables.map{|k, v| [k[1..-1].to_sym, self.send(k[1..-1])]}].to_json
+    end
   end
 end

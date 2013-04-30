@@ -11,6 +11,7 @@ GEM
     debugger-ruby_core_source (1.2.0)
     haml (4.0.2)
       tilt
+    json (1.7.7)
     minitest (2.12.1)
     rack (1.5.2)
     rack-protection (1.5.0)
@@ -35,6 +36,7 @@ PLATFORMS
 DEPENDENCIES
   debugger
   haml
+  json
   minitest
   rack-test
   redis

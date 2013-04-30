@@ -7,6 +7,8 @@ gem 'redis'
 gem 'redis-namespace'
 
 gem 'haml'
+gem 'json'
+
 gem 'debugger'
 
 group :test do

@@ -1,9 +1,13 @@
 require 'sinatra/base'
 require 'sinatra-initializers'
 
-require "debugger"
 require 'redis'
+require 'redis-namespace'
+
 require 'haml'
+require 'json'
+
+require "debugger"
 
 # TODO: rename to SCC messaging service == SMS
 class SMS < Sinatra::Base
@@ -39,8 +43,12 @@ class SMS < Sinatra::Base
 
   post '/enqueue' do
     protected!
-    REDIS.set("notification", "SMS client sent new notification")
-    status 200
+
+    if Notification::Message.new(params).save
+      status 200
+    else
+      status 500
+    end
   end
 end
 
