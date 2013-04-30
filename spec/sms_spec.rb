@@ -1,13 +1,13 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe Hermes do
+describe SMS do
   it "establishes a REDIS connection" do
     REDIS.wont_be_nil
   end
 
   it "access index page" do
     get '/'
-    last_response.body.must_include 'Hermes - SCC Notification service'
+    last_response.body.must_include 'SMS - SCC Messaging Service'
     last_response.ok?.must_equal true
   end
 

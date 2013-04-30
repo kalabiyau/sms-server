@@ -4,6 +4,6 @@ base_dir = current_dir + '/../lib'
 $: << base_dir unless $:.include?(base_dir)
 
 require 'rack'
-require 'hermes'
+require 'sms'
 
-Rack::Handler::Thin.run Hermes, :Port => 9292
+Rack::Handler::Thin.run SMS, :Port => 9292

@@ -6,11 +6,11 @@ require 'minitest/spec'
 require 'turn/autorun'
 require 'rack/test'
 
-# Include hermes.rb file
+# Include sms.rb file
 begin
-  require_relative '../lib/hermes.rb'
+  require_relative '../lib/sms.rb'
 rescue NameError
-  require File.expand_path(File.dirname(__FILE__) + '/../lib/hermes.rb')
+  require File.expand_path(File.dirname(__FILE__) + '/../lib/sms.rb')
 end
 
 class MiniTest::Spec

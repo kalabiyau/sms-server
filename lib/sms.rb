@@ -6,7 +6,7 @@ require 'redis'
 require 'haml'
 
 # TODO: rename to SCC messaging service == SMS
-class Hermes < Sinatra::Base
+class SMS < Sinatra::Base
   # register sinatra modules
   register Sinatra::Initializers
 
@@ -39,7 +39,7 @@ class Hermes < Sinatra::Base
 
   post '/enqueue' do
     protected!
-    REDIS.set("notification", "Hermes client sent new notification")
+    REDIS.set("notification", "SMS client sent new notification")
     status 200
   end
 end
@@ -49,9 +49,9 @@ __END__
 !!!
 %html
   %head
-    %title Hermes - SCC Notification service
+    %title SMS - SCC Messaging Service
   %body
-    %h1 Hermes - SCC Notification service
+    %h1 SMS - SCC Messaging Service
 
     %p Email contact address: happy-customer@suse.de
     %p IRC channel: #happy-customer

@@ -12,8 +12,8 @@ if ENV['RACK_ENV'] != 'test'
       timer 5, method: :timed
       def timed
         notification = get_notifications()
-        Channel("#hermes").send "You have new IRC notification" if notification
-        Channel("#hermes").send notification if notification
+        Channel("#sms").send "You have new IRC notification" if notification
+        Channel("#sms").send notification if notification
 
         REDIS.del("notification")
       end
@@ -29,7 +29,7 @@ if ENV['RACK_ENV'] != 'test'
       configure do |c|
         c.nick = "sms"
         c.server = "irc.suse.de"
-        c.channels = ["#hermes"]
+        c.channels = ["#sms"]
         c.verbose = false
         c.plugins.plugins = [TimedPlugin]
         c.log = self.loggers.first

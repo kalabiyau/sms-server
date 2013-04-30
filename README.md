@@ -1,4 +1,4 @@
-hermes-server
+sms-server
 =============
 
-Hermes - SCC Notification service
+SMS - SCC Messaging Service

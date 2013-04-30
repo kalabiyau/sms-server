@@ -1,4 +1,4 @@
 $: << 'lib'
 
-require 'hermes'
-run Hermes
+require 'sms'
+run SMS
