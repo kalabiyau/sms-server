@@ -1,10 +1,16 @@
 source :rubygems
 
-gem "sinatra"
-gem "haml"
+gem 'sinatra'
+gem 'sinatra-initializers'
+
+gem 'redis'
+gem 'redis-namespace'
+
+gem 'haml'
+gem 'debugger'
 
 group :test do
-  gem "minitest"
+  gem 'minitest'
+  gem 'rack-test'
   gem 'turn'
-  gem "rack-test"
 end
