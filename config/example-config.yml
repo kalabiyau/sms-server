@@ -1,0 +1,19 @@
+# Common options
+sms-server:
+  protocol: 'http'
+  host:     'localhost'
+  port:     '9292'
+  path:     '/enqueue'
+  username: 'scc'
+  password: 'admin'
+
+
+# sms-client options
+sms-client:
+
+
+# IRC options
+irc:
+  nick:     ''
+  server:   ''
+  channels: ['#channel']

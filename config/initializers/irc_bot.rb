@@ -12,17 +12,19 @@ if ENV['RACK_ENV'] != 'test'
       timer 5, method: :notify
       def notify
         Notification::Message.all.each do |message|
-          success = Channel("#sms").send("#{message.type}: #{message.text}")
-          message.destroy if success
+          CONFIG['irc']['channels'].each do |channel|
+            success = Channel(channel).send("#{message.type}: #{message.text}")
+            message.destroy if success
+          end
         end
       end
     end
 
     bot = Cinch::Bot.new do
       configure do |c|
-        c.nick = "sms"
-        c.server = "irc.suse.de"
-        c.channels = ["#sms"]
+        c.nick = CONFIG['irc']['nick']
+        c.server = CONFIG['irc']['server']
+        c.channels = CONFIG['irc']['channels']
         c.verbose = false
         c.plugins.plugins = [SMSPlugin]
         c.log = self.loggers.first

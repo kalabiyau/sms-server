@@ -18,8 +18,10 @@ class SMS < Sinatra::Base
   set :app_file, __FILE__
   set :haml, { :format => :html5, :attr_wrapper => '"' }
   set :inline_templates, true
-  set :environments, %w{development test production staging}
+  set :environments, %w{development test production}
   set :environment, ENV['RACK_ENV'] || :development
+  set :bind, CONFIG['sms-server']['host']
+  set :port, CONFIG['sms-server']['port']
 
   # start the server if ruby file executed directly
   run! if app_file == $0
@@ -33,7 +35,7 @@ class SMS < Sinatra::Base
 
     def authorized?
       @auth ||=  Rack::Auth::Basic::Request.new(request.env)
-      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == ['scc', 'admin']
+      @auth.provided? and @auth.basic? and @auth.credentials and @auth.credentials == [CONFIG['sms-server']['username'], CONFIG['sms-server']['password']]
     end
   end
 
