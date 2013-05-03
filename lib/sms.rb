@@ -19,7 +19,7 @@ class SMS < Sinatra::Base
   set :haml, { :format => :html5, :attr_wrapper => '"' }
   set :inline_templates, true
   set :environments, %w{development test production}
-  set :environment, ENV['RACK_ENV'] || :development
+  set :environment, RACK_ENV
   set :bind, CONFIG['sms-server']['host']
   set :port, CONFIG['sms-server']['port']
 
