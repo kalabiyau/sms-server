@@ -61,5 +61,5 @@ __END__
   %body
     %h1 SMS - SCC Messaging Service
 
-    %p Email contact address: happy-customer@suse.de
-    %p IRC channel: #happy-customer
+    %p Email contact address: #{CONFIG['common']['email']}
+    %p IRC channel: #{CONFIG['irc']['channels'].join(',')}

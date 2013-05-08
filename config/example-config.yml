@@ -1,4 +1,8 @@
 # Common options
+common:
+  email:    'exmaple@mail.com'
+
+# sms-server settings
 sms-server:
   protocol: 'http'
   host:     'localhost'
@@ -8,7 +12,7 @@ sms-server:
   password: 'admin'
 
 
-# sms-client options
+# sms-client settings
 sms-client:
 
 
