@@ -8,6 +8,7 @@ gem 'redis-namespace'
 
 gem 'haml'
 gem 'json'
+gem 'psych'
 
 gem 'debugger'
 
