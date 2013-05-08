@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-describe SMS do
+describe 'SMS server' do
   before(:each){ Notification::Message.destroy_all }
 
   it "establishes a REDIS connection" do
