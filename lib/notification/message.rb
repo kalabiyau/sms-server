@@ -1,8 +1,7 @@
 module Notification
   class Message
-    attr_accessor :id, :type, :text
+    attr_accessor :id, :type, :text, :timestamp
 
-    # TODO: add timestamp to be able to sort a messages
     def initialize(args={})
       self.id = args[:id] || SecureRandom.hex
 
@@ -32,7 +31,7 @@ module Notification
       end
 
       def all
-        self.namespace.keys.collect { |id| self.find(id) }
+        self.namespace.keys.collect { |id| self.find(id) }.sort_by(&:timestamp)
       end
 
       def destroy_all()
@@ -42,6 +41,7 @@ module Notification
 
     # === Instance methods ===
     def save
+      self.timestamp = Time.now.to_i
       self.class.namespace.set(self.id, self.to_json) == "OK"
     end
 
