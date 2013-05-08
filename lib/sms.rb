@@ -4,14 +4,12 @@ require 'sinatra-initializers'
 require 'redis'
 require 'redis-namespace'
 
+require 'psych'
 require 'haml'
 require 'json'
 
-require "debugger"
-
-# TODO: rename to SCC messaging service == SMS
-class SMS < Sinatra::Base
-  # register sinatra modules
+class SMS < Sinatra::Application
+  # Register sinatra modules
   register Sinatra::Initializers
 
   # Sinatra config: http://www.sinatrarb.com/configuration.html
@@ -23,7 +21,7 @@ class SMS < Sinatra::Base
   set :bind, CONFIG['sms-server']['host']
   set :port, CONFIG['sms-server']['port']
 
-  # start the server if ruby file executed directly
+  # Start the server if ruby file executed directly
   run! if app_file == $0
 
   helpers do
