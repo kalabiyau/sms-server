@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'sinatra-initializers'
@@ -10,9 +10,12 @@ gem 'haml'
 gem 'json'
 gem 'psych'
 
-gem 'debugger'
+group :development do
+  gem 'debugger'
+end
 
 group :test do
+  gem 'debugger'
   gem 'minitest'
   gem 'rack-test'
   gem 'turn'

@@ -1,15 +1,11 @@
+require 'rubygems'
 require 'sinatra/base'
 require 'sinatra-initializers'
 
-require 'redis'
-require 'redis-namespace'
+class SMSServer < Sinatra::Base
+  puts ">> SMSServer application starting in #{ENV['RACK_ENV']}"
 
-require 'psych'
-require 'haml'
-require 'json'
-
-class SMS < Sinatra::Application
-  # Register sinatra modules
+  # Register sinatra module
   register Sinatra::Initializers
 
   # Sinatra config: http://www.sinatrarb.com/configuration.html
@@ -17,12 +13,7 @@ class SMS < Sinatra::Application
   set :haml, { :format => :html5, :attr_wrapper => '"' }
   set :inline_templates, true
   set :environments, %w{development test production}
-  set :environment, RACK_ENV
-  set :bind, CONFIG['sms-server']['host']
-  set :port, CONFIG['sms-server']['port']
-
-  # Start the server if ruby file executed directly
-  run! if app_file == $0
+  set :environment, ENV['RACK_ENV']
 
   helpers do
     def protected!
@@ -61,5 +52,5 @@ __END__
   %body
     %h1 SMS - SCC Messaging Service
 
-    %p Email contact address: #{CONFIG['common']['email']}
+    %p Email contact address: #{CONFIG['contact']['email']}
     %p IRC channel: #{CONFIG['irc']['channels'].join(',')}

@@ -5,18 +5,13 @@ require 'minitest/autorun'
 require 'minitest/spec'
 require 'turn/autorun'
 require 'rack/test'
-
-# Include sms.rb file
-begin
-  require_relative '../lib/sms.rb'
-rescue NameError
-  require File.expand_path(File.dirname(__FILE__) + '/../lib/sms.rb')
-end
+require 'debugger'
+require 'sms_server'
 
 class MiniTest::Spec
   include Rack::Test::Methods
   def app
-    Rack::Builder.parse_file(File.dirname(__FILE__) + '/../config.ru').first
+    Rack::Builder.parse_file(File.join(APP_ROOT, 'config.ru')).first
   end
 end
 

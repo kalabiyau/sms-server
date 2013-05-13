@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
-current_dir = File.expand_path(File.dirname(__FILE__))
-base_dir = current_dir + '/../lib'
-$: << base_dir unless $:.include?(base_dir)
+$: << File.join(File.expand_path(File.dirname(__FILE__)), '../lib')
 
-require 'rack'
-require 'sms'
+# Starts a SMS server in development env !!!
+ENV['RACK_ENV'] = 'development'
 
-Rack::Handler::Thin.run SMS, :Port => 9292
+require 'sms_server'
+Rack::Handler::Thin.run SMSServer, :Port => 9292
