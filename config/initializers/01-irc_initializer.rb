@@ -13,7 +13,12 @@ if ENV['RACK_ENV'] != 'test'
       def notify
         Notification::Message.all.each do |message|
           CONFIG['irc']['channels'].each do |channel|
-            success = Channel(channel).send("#{message.sender}: #{message.text}")
+            if message.type == "error"
+              notification = Format(:red, "#{message.sender}: #{message.text}")
+            else
+              notification = "#{message.sender}: #{message.text}"
+            end
+            success = Channel(channel).send(notification)
             message.destroy if success
           end
         end
