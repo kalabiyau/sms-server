@@ -1,6 +1,6 @@
 module Notification
   class Message
-    attr_accessor :id, :type, :text, :timestamp
+    attr_accessor :id, :sender, :type, :text, :timestamp
 
     def initialize(args={})
       self.id = args[:id] || SecureRandom.hex

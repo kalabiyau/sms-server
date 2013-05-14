@@ -1,6 +1,6 @@
 # Copy this file to ~/.sms and rename to config.yml
 
-# SMS server options
+### SMS server/client options
 sms-server:
   protocol: 'http'
   host:     'localhost'
@@ -9,6 +9,7 @@ sms-server:
   username: 'user'
   password: 'password'
 
+### SMS server options
 # IRC options
 irc:
   nick:     "sms"

@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Notification::Message do
   subject { Notification::Message }
-  let(:instance) { subject.new(:type => "info", :text => "test") }
+  let(:instance) { subject.new(:sender => "test", :text => "test", :type => "info") }
 
   before(:each) do
     Notification::Message.destroy_all
@@ -11,11 +11,13 @@ describe Notification::Message do
   it "initializes a new instance" do
     instance.id.wont_be_nil
     instance.type.wont_be_nil
+    instance.sender.wont_be_nil
     instance.text.wont_be_nil
     instance.timestamp.must_be_nil
 
     instance.type.must_equal "info"
     instance.text.must_equal "test"
+    instance.sender.must_equal "test"
   end
 
   it "returns a redis namespace" do
@@ -28,6 +30,7 @@ describe Notification::Message do
 
     message = subject.find(instance.id)
     message.type.must_equal instance.type
+    message.sender.must_equal instance.sender
     message.text.must_equal instance.text
   end
 
@@ -86,5 +89,6 @@ describe Notification::Message do
     json.must_include instance.id
     json.must_include instance.type
     json.must_include instance.text
+    json.must_include instance.sender
   end
 end

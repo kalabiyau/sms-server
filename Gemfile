@@ -6,6 +6,8 @@ gem 'sinatra-initializers'
 gem 'redis'
 gem 'redis-namespace'
 
+gem 'cinch'
+
 gem 'haml'
 gem 'json'
 gem 'psych'
