@@ -1,11 +1,7 @@
 require 'rubygems'
 require 'sinatra/base'
-# require 'sinatra-initializers'
 
 class SMSServer < Sinatra::Base
-  # Register sinatra module
-  # register Sinatra::Initializers
-
   # Sinatra config: http://www.sinatrarb.com/configuration.html
   set :app_file, __FILE__
   set :config_directory, "config/initializers"
