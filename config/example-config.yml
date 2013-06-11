@@ -1,21 +1,20 @@
 # Copy this file to ~/.sms and rename to config.yml
 
-### SMS server/client options
+# sms-server settings
+## Contact settings
+contact:
+  email: some-email@suse.de
+
+## IRC settings
+irc:
+  nick:     'sms'
+  server:   'irc.host.de'
+  channels: ['#sms']
+
+# sms-client settings
+## sms-server location
 sms-server:
-  protocol: 'http'
-  host:     'localhost'
-  port:     '9292'
-  path:     '/enqueue'
+  url:  'http://localhost:9292/enqueue'
   username: 'user'
   password: 'password'
 
-### SMS server options
-# IRC options
-irc:
-  nick:     "sms"
-  server:   "irc.example.com"
-  channels: ["#channel"]
-
-# Other options
-contact:
-  email: example@email.com

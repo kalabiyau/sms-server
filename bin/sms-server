@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 $: << File.join(File.expand_path(File.dirname(__FILE__)), '../lib')
 
-# Starts a SMS server in development env !!!
+# Starts the SMS server in development env !!!
 ENV['RACK_ENV'] = 'development'
 
 require 'sms_server'

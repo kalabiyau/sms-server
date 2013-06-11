@@ -1,7 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 
 require 'rubygems'
-require 'minitest'
 require 'minitest/autorun'
 require 'minitest/spec'
 require 'turn/autorun'

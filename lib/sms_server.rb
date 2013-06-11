@@ -1,19 +1,25 @@
 require 'rubygems'
 require 'sinatra/base'
-require 'sinatra-initializers'
+# require 'sinatra-initializers'
 
 class SMSServer < Sinatra::Base
-  puts ">> SMSServer application starting in #{ENV['RACK_ENV']}"
-
   # Register sinatra module
-  register Sinatra::Initializers
+  # register Sinatra::Initializers
 
   # Sinatra config: http://www.sinatrarb.com/configuration.html
   set :app_file, __FILE__
+  set :config_directory, "config/initializers"
   set :haml, { :format => :html5, :attr_wrapper => '"' }
   set :inline_templates, true
   set :environments, %w{development test production}
   set :environment, ENV['RACK_ENV']
+
+  # Register Sinatra initializers
+  Dir["#{config_directory}/**/*.rb"].sort.each do |file_path|
+    require File.join(Dir.pwd, file_path)
+  end
+
+  puts ">> SMSServer application starting in #{ENV['RACK_ENV']}"
 
   helpers do
     def protected!

@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'sinatra-initializers'
 
 gem 'redis'
 gem 'redis-namespace'

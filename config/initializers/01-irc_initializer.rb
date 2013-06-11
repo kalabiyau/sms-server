@@ -1,3 +1,5 @@
+puts "*** 01-irc_initializer.rb"
+
 if ENV['RACK_ENV'] != 'test'
   require 'cinch'
 

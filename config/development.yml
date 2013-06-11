@@ -1,5 +1,5 @@
 ---
-environment: production
+environment: development
 chdir: .
 rackup: config.ru
 pid: tmp/pids/thin.pid
@@ -9,4 +9,4 @@ port: 9292
 max_conns: 1024
 max_persistent_conns: 512
 timeout: 30
-daemonize: true
+daemonize: false
