@@ -15,7 +15,7 @@ describe 'SMSServer' do
   end
 
   it "grants access for authorized clients" do
-    authorize 'username', 'password'
+    authorize 'user', 'password'
     post '/enqueue'
     last_response.status.must_equal 200
   end
@@ -27,7 +27,7 @@ describe 'SMSServer' do
   end
 
   it "enqueues new notification" do
-    authorize 'username', 'password'
+    authorize 'user', 'password'
     Notification::Message.all.count.must_equal 0
 
     post '/enqueue', :type => "test", :text => "Test message"

@@ -9,7 +9,6 @@ gem 'cinch'
 
 gem 'haml'
 gem 'json'
-gem 'psych'
 
 group :development do
   gem 'debugger'

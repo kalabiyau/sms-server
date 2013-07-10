@@ -3,7 +3,7 @@ puts "*** 00-application_initializer.rb"
 require 'redis'
 require 'redis-namespace'
 
-require 'psych'
+require 'yaml'
 require 'haml'
 require 'json'
 
@@ -19,7 +19,12 @@ REDIS = Redis.new(:host => "localhost", :port => 6379, :db => REDIS_DATABASES[EN
 Dir[File.join(LIB_ROOT,"/**/*.rb")].each {|file| require file }
 
 # Read options from yml file(s)
-CONFIG_FILE = File.expand_path('~/.sms/config.yml')
-CONFIG = Psych.load_file(File.expand_path(CONFIG_FILE))
+if ENV['RACK_ENV'] == 'test'
+	CONFIG_FILE = File.expand_path('config/example-config.yml')
+else
+	CONFIG_FILE = File.expand_path('~/.sms/config.yml')
+end
+
+CONFIG = YAML.load_file(File.expand_path(CONFIG_FILE)) 
 
 
